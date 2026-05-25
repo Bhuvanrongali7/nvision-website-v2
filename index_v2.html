@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVision IT — Enterprise Technology Solutions</title>
+<link rel="stylesheet" href="base_styles_v2.css">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0A1628;
+  --navy-mid: #112240;
+  --accent: #FBBF24;
+  --accent-dim: rgba(251,191,36,0.12);
+  --accent-glow: rgba(251,191,36,0.25);
+  --bg: #F8FAFC;
+  --bg-mid: #EEF2F7;
+  --white: #FFFFFF;
+  --text-main: #0A1628;
+  --text-muted: #4A5568;
+  --border: rgba(10,22,40,0.1);
+  --card-bg: #FFFFFF;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Open Sans', sans-serif; background: var(--bg); color: var(--text-main); overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 4rem; background: rgba(10,22,40,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.nav-logo { font-weight: 800; font-size: 1.2rem; color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.nav-logo img { height: 34px; width: auto; object-fit: contain; }
+.nav-links { display: flex; gap: 0; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; padding: 0.4rem 0.9rem; border-radius: 6px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta { background: var(--accent); color: var(--navy); padding: 0.55rem 1.4rem; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; }
+
+/* ── HERO: BENTO GRID ── */
+.hero { padding: 7rem 4rem 3rem; background: var(--navy); }
+.hero-top { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+.hero-main { background: linear-gradient(135deg, #112240 0%, #0A1628 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 3.5rem; position: relative; overflow: hidden; }
+.hero-main::before { content:''; position:absolute; top:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle, rgba(251,191,36,0.12), transparent 70%); }
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.3); color: var(--accent); padding: 0.35rem 0.9rem; border-radius: 100px; font-size: 0.72rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 0.05em; }
+.hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero-main h1 { font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 800; color: var(--white); line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 1.25rem; position: relative; z-index: 1; }
+.hero-main h1 em { font-style: normal; color: var(--accent); }
+.hero-main p { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.75; max-width: 480px; margin-bottom: 2rem; position: relative; z-index: 1; }
+.hero-btns { display: flex; gap: 0.75rem; position: relative; z-index: 1; }
+.btn-gold { background: var(--accent); color: var(--navy); padding: 0.75rem 1.75rem; border-radius: 8px; font-weight: 700; font-size: 0.88rem; text-decoration: none; transition: opacity 0.2s; }
+.btn-ghost { background: rgba(255,255,255,0.06); color: var(--white); padding: 0.75rem 1.75rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; text-decoration: none; border: 1px solid rgba(255,255,255,0.15); transition: all 0.2s; }
+.btn-ghost:hover { background: rgba(255,255,255,0.12); }
+
+/* BENTO SIDE CARDS */
+.hero-side { display: flex; flex-direction: column; gap: 1.5rem; }
+.bento-inc { background: var(--accent); border-radius: 20px; padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+.bento-inc .inc-num { font-size: 4rem; font-weight: 800; color: var(--navy); line-height: 1; }
+.bento-inc .inc-label { font-size: 0.88rem; font-weight: 700; color: var(--navy); opacity: 0.75; }
+.bento-inc .inc-desc { font-size: 0.78rem; color: var(--navy); opacity: 0.6; margin-top: 0.5rem; }
+.bento-oracle { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 2rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.bento-oracle .oracle-label { font-size: 0.68rem; font-weight: 700; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.bento-oracle .oracle-title { font-size: 1.1rem; font-weight: 800; color: var(--white); }
+.bento-oracle .oracle-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+.oracle-badge { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 3px 10px; font-size: 0.72rem; color: rgba(255,255,255,0.6); font-weight: 600; }
+
+/* BENTO BOTTOM */
+.hero-bottom { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.bento-stat { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 1.75rem; }
+.bento-stat .stat-val { font-size: 2.2rem; font-weight: 800; color: var(--accent); line-height: 1; }
+.bento-stat .stat-lbl { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 6px; }
+.bento-stat .stat-icon { font-size: 1.4rem; margin-bottom: 0.75rem; display: block; }
+.bento-img { border-radius: 16px; overflow: hidden; position: relative; }
+.bento-img img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 140px; }
+.bento-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,22,40,0.7) 0%, transparent 60%); display: flex; align-items: flex-end; padding: 1.25rem; }
+.bento-img-label { font-size: 0.78rem; font-weight: 700; color: var(--white); }
+
+/* ── MARQUEE TICKER ── */
+.ticker { background: var(--accent); padding: 0.75rem 0; overflow: hidden; white-space: nowrap; }
+.ticker-inner { display: inline-flex; gap: 3rem; animation: ticker 20s linear infinite; }
+.ticker-item { font-size: 0.82rem; font-weight: 700; color: var(--navy); display: flex; align-items: center; gap: 0.5rem; }
+.ticker-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--navy); opacity: 0.4; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── SERVICES HORIZONTAL SCROLL ── */
+.services-section { padding: 5rem 4rem; background: var(--bg); }
+.services-section h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: var(--navy); margin-bottom: 0.5rem; }
+.services-section .sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+.services-scroll { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.service-tile { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: all 0.25s; position: relative; overflow: hidden; }
+.service-tile::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform 0.3s; }
+.service-tile:hover { box-shadow: 0 8px 32px rgba(10,22,40,0.1); transform: translateY(-4px); }
+.service-tile:hover::before { transform: scaleX(1); }
+.service-tile-num { font-size: 0.68rem; font-weight: 800; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1rem; }
+.service-tile h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 0.5rem; }
+.service-tile p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
+.service-tile-arrow { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-top: 1rem; text-decoration: none; }
+
+/* ── ABOUT SPLIT ── */
+.about-section { padding: 0; display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
+.about-left { background: var(--navy); padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+.about-left .tag { font-size: 0.68rem; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+.about-left h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
+.about-left p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 1rem; }
+.diff-list { list-style: none; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
+.diff-item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: rgba(255,255,255,0.8); font-weight: 500; }
+.diff-check { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--navy); font-weight: 800; flex-shrink: 0; }
+.about-right { position: relative; overflow: hidden; }
+.about-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.about-right-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,22,40,0.4) 0%, transparent 60%); }
+.about-right-badge { position: absolute; bottom: 2rem; right: 2rem; background: var(--accent); border-radius: 14px; padding: 1.25rem 1.5rem; text-align: center; }
+.about-right-badge .badge-num { font-size: 2rem; font-weight: 800; color: var(--navy); line-height: 1; }
+.about-right-badge .badge-lbl { font-size: 0.72rem; font-weight: 700; color: var(--navy); opacity: 0.7; margin-top: 3px; }
+
+/* ── INDUSTRIES GRID ── */
+.industries-section { padding: 5rem 4rem; background: var(--bg-mid); }
+.industries-section h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: var(--navy); margin-bottom: 0.5rem; }
+.industries-section .sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+.industry-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+.industry-item { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem 1rem; text-align: center; transition: all 0.2s; cursor: default; }
+.industry-item:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(251,191,36,0.1); }
+.industry-item .ind-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+.industry-item .ind-name { font-size: 0.8rem; font-weight: 700; color: var(--navy); }
+
+/* ── NEWS STRIP ── */
+.news-section { padding: 5rem 4rem; background: var(--navy); }
+.news-section .tag { font-size: 0.68rem; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.news-section h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: var(--white); margin-bottom: 2.5rem; }
+.news-strip { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 1.5rem; }
+.news-featured { background: var(--accent); border-radius: 20px; overflow: hidden; }
+.news-featured img { width: 100%; height: 200px; object-fit: cover; }
+.news-featured-body { padding: 1.75rem; }
+.news-featured-body .nf-tag { font-size: 0.68rem; font-weight: 800; color: var(--navy); letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; margin-bottom: 0.5rem; }
+.news-featured-body h3 { font-size: 1.05rem; font-weight: 800; color: var(--navy); line-height: 1.35; margin-bottom: 0.75rem; }
+.news-featured-body p { font-size: 0.82rem; color: var(--navy); opacity: 0.7; line-height: 1.6; }
+.news-featured-body a { display: inline-block; margin-top: 1rem; font-size: 0.8rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+.news-side { display: flex; flex-direction: column; gap: 1rem; }
+.news-mini { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1.25rem; flex: 1; transition: border-color 0.2s; text-decoration: none; display: block; }
+.news-mini:hover { border-color: rgba(251,191,36,0.4); }
+.news-mini .nm-tag { font-size: 0.65rem; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.news-mini h4 { font-size: 0.88rem; font-weight: 700; color: var(--white); line-height: 1.4; }
+.news-mini .nm-arrow { color: var(--accent); font-size: 0.85rem; margin-top: 0.75rem; display: block; }
+
+/* ── CERTIFICATIONS ROW ── */
+.certs-section { padding: 3rem 4rem; background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.certs-inner { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: space-between; }
+.cert-item { display: flex; align-items: center; gap: 0.75rem; }
+.cert-item .cert-icon { font-size: 1.4rem; }
+.cert-item .cert-name { font-size: 0.82rem; font-weight: 700; color: var(--navy); }
+.cert-item .cert-sub { font-size: 0.7rem; color: var(--text-muted); }
+.certs-divider { width: 1px; height: 40px; background: var(--border); }
+
+/* ── TESTIMONIAL ── */
+.testi-section { padding: 5rem 4rem; background: var(--bg-mid); }
+.testi-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+.testi-inner .tag { font-size: 0.68rem; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+.testi-quote { font-size: clamp(1.1rem, 2.5vw, 1.6rem); font-weight: 600; color: var(--navy); line-height: 1.5; margin-bottom: 2rem; font-style: italic; }
+.testi-quote span { color: var(--accent); font-style: normal; }
+.testi-dots { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; }
+.testi-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; }
+.testi-dot.active { background: var(--accent); }
+.testi-author { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+.testi-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+.testi-name { font-size: 0.88rem; font-weight: 700; color: var(--navy); text-align: left; }
+.testi-role { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ── CTA BANNER ── */
+.cta-section { padding: 5rem 4rem; background: var(--navy); position: relative; overflow: hidden; }
+.cta-section::before { content:''; position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle, rgba(251,191,36,0.08), transparent 70%); }
+.cta-section::after { content:''; position:absolute; bottom:-80px; right:-80px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(251,191,36,0.05), transparent 70%); }
+.cta-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 3rem; }
+.cta-inner h2 { font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 800; color: var(--white); line-height: 1.15; letter-spacing: -0.02em; }
+.cta-inner h2 span { color: var(--accent); }
+.cta-inner p { font-size: 0.9rem; color: rgba(255,255,255,0.55); margin-top: 0.75rem; max-width: 500px; line-height: 1.7; }
+.cta-actions { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-end; flex-shrink: 0; }
+.cta-actions a { white-space: nowrap; }
+.cta-small { font-size: 0.78rem; color: rgba(255,255,255,0.4); text-align: right; margin-top: 0.25rem; }
+
+/* FOOTER */
+footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 4rem; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.75; margin-top: 0.75rem; max-width: 280px; }
+.footer-col h4 { font-size: 0.72rem; font-weight: 800; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 0.5rem; transition: color 0.2s; }
+.footer-col a:hover { color: var(--accent); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-weight: 800; font-size: 1.1rem; color: var(--white); }
+.footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+@media(max-width:1024px){ .hero-top{grid-template-columns:1fr;} .hero-bottom{grid-template-columns:repeat(2,1fr);} .services-scroll{grid-template-columns:repeat(2,1fr);} .about-section{grid-template-columns:1fr;} .news-strip{grid-template-columns:1fr;} .industry-grid{grid-template-columns:repeat(3,1fr);} .cta-inner{grid-template-columns:1fr;} .cta-actions{align-items:flex-start;} .footer-grid{grid-template-columns:1fr 1fr;} nav{padding:1rem 1.5rem;} .nav-links{display:none;} .hero,.services-section,.about-left,.industries-section,.news-section,.certs-section,.testi-section,.cta-section,footer{padding-left:1.5rem;padding-right:1.5rem;} }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><img src="https://www.nvisioninfotech.com/images/logo.png" alt="NVision IT" onerror="this.style.display='none'"> NVision IT</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#public">Public Sector</a></li>
+    <li><a href="#careers">Careers</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO BENTO -->
+<section class="hero">
+  <div class="hero-top">
+    <div class="hero-main">
+      <div class="hero-tag"><span class="hero-dot"></span> Founded 2004 · Chesterfield, MO</div>
+      <h1>Enterprise IT for organizations that <em>can't afford to fail</em></h1>
+      <p>NVision IT partners with Fortune 500 companies and federal agencies on Oracle ERP, cloud migration, business intelligence, and staffing. Inc. 500 ranked. Oracle Gold Partner certified.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-gold">Explore Services</a>
+        <a href="#contact" class="btn-ghost">Talk to Us</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="bento-inc">
+        <div>
+          <div class="inc-num">#451</div>
+          <div class="inc-label">Inc. 500 in America</div>
+          <div class="inc-desc">7th fastest growing in Missouri</div>
+        </div>
+        <div style="font-size:0.72rem;font-weight:700;color:var(--navy);opacity:0.5;margin-top:1rem;">INC. MAGAZINE RECOGNITION</div>
+      </div>
+      <div class="bento-oracle">
+        <div>
+          <div class="oracle-label">Partnership</div>
+          <div class="oracle-title">Oracle Gold Partner</div>
+        </div>
+        <div class="oracle-badges">
+          <span class="oracle-badge">E-Business Suite</span>
+          <span class="oracle-badge">Oracle Cloud</span>
+          <span class="oracle-badge">Database 12c</span>
+          <span class="oracle-badge">OBIEE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="bento-stat">
+      <span class="stat-icon">🏛️</span>
+      <div class="stat-val">DoD</div>
+      <div class="stat-lbl">Active defense contracts</div>
+    </div>
+    <div class="bento-stat">
+      <span class="stat-icon">💼</span>
+      <div class="stat-val">F500</div>
+      <div class="stat-lbl">Fortune 500 client base</div>
+    </div>
+    <div class="bento-stat">
+      <span class="stat-icon">📋</span>
+      <div class="stat-val">ISO</div>
+      <div class="stat-lbl">9001:2015 certified</div>
+    </div>
+    <div class="bento-img">
+      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop" alt="Data center">
+      <div class="bento-img-overlay">
+        <span class="bento-img-label">20+ years of enterprise IT delivery</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Oracle ERP Implementation <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Business Intelligence & Analytics <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Enterprise Cloud Computing <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Staff Augmentation <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Database Support <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Custom Application Development <span class="ticker-dot"></span></span>
+    <span class="ticker-item">DBA Shared Services <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Document Management <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Business Process Reengineering <span class="ticker-dot"></span></span>
+    <!-- Repeat for seamless loop -->
+    <span class="ticker-item">Oracle ERP Implementation <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Business Intelligence & Analytics <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Enterprise Cloud Computing <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Staff Augmentation <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Database Support <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Custom Application Development <span class="ticker-dot"></span></span>
+    <span class="ticker-item">DBA Shared Services <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Document Management <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Business Process Reengineering <span class="ticker-dot"></span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;">
+    <div>
+      <div style="font-size:0.68rem;font-weight:700;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">What we do</div>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--navy);">Our services</h2>
+    </div>
+    <a href="services.html" style="font-size:0.85rem;font-weight:700;color:var(--accent);text-decoration:none;">View all services →</a>
+  </div>
+  <div class="services-scroll">
+    <div class="service-tile">
+      <div class="service-tile-num">01 — CORE</div>
+      <h3>ERP Implementation</h3>
+      <p>Oracle E-Business Suite implementation across Financials, Procurement, Order Management, Supply Chain, Manufacturing, and HRMS. We define scope upfront and deliver on it.</p>
+      <a href="services.html#erp" class="service-tile-arrow">Learn more →</a>
+    </div>
+    <div class="service-tile">
+      <div class="service-tile-num">02 — ANALYTICS</div>
+      <h3>Business Intelligence</h3>
+      <p>OBIEE dashboards, enterprise reporting, and ad hoc analysis environments that give your leadership team real-time visibility into what matters.</p>
+      <a href="services.html#bi" class="service-tile-arrow">Learn more →</a>
+    </div>
+    <div class="service-tile">
+      <div class="service-tile-num">03 — CLOUD</div>
+      <h3>Enterprise Cloud</h3>
+      <p>Oracle Cloud SaaS, PaaS, and IaaS solutions. We help you migrate from on-premise systems and modernize processes at the same time.</p>
+      <a href="services.html#cloud" class="service-tile-arrow">Learn more →</a>
+    </div>
+    <div class="service-tile">
+      <div class="service-tile-num">04 — STRATEGY</div>
+      <h3>Process Reengineering</h3>
+      <p>We map your current state, eliminate what doesn't belong, and design the future state your new systems will be built around.</p>
+      <a href="services.html#bpr" class="service-tile-arrow">Learn more →</a>
+    </div>
+    <div class="service-tile">
+      <div class="service-tile-num">05 — STAFFING</div>
+      <h3>Staff Augmentation</h3>
+      <p>Pre-vetted Oracle and ERP specialists placed into your team through a rigorous 5-stage vetting process. We don't send bodies — we send specialists.</p>
+      <a href="services.html#staff" class="service-tile-arrow">Learn more →</a>
+    </div>
+    <div class="service-tile">
+      <div class="service-tile-num">06 — DATABASE</div>
+      <h3>Database Support</h3>
+      <p>Continuous Oracle DBA services — monitoring, patching, migrations, and performance optimization so your team can focus on the business.</p>
+      <a href="services.html#db" class="service-tile-arrow">Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SPLIT -->
+<section class="about-section" id="about">
+  <div class="about-left">
+    <div class="tag">About NVision IT</div>
+    <h2>More than IT — we consider the business behind every system</h2>
+    <p>Founded in 2004, NVision IT was built on a simple idea: technology should serve the business, not the other way around. We look at the underlying processes in everything we do — not just the systems on top of them.</p>
+    <p>Our clients range from mid-sized companies to Fortune 500 organizations and federal agencies. In every engagement, we define budget and scope upfront and hold to them.</p>
+    <ul class="diff-list">
+      <li class="diff-item"><span class="diff-check">✓</span>Experience — 20+ years of Oracle and enterprise IT delivery</li>
+      <li class="diff-item"><span class="diff-check">✓</span>Value — World-class solutions at a reasonable price</li>
+      <li class="diff-item"><span class="diff-check">✓</span>Right Sourcing — Right resource matched to every task</li>
+      <li class="diff-item"><span class="diff-check">✓</span>Shared Services — Quality without redundancy</li>
+      <li class="diff-item"><span class="diff-check">✓</span>Vetting Process — Selective, rigorous recruitment</li>
+      <li class="diff-item"><span class="diff-check">✓</span>We Stand By Our Work — Support built into every engagement</li>
+    </ul>
+    <a href="about.html" class="btn-gold" style="width:fit-content;margin-top:0.5rem;">About Us →</a>
+  </div>
+  <div class="about-right">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&auto=format&fit=crop" alt="NVision IT team">
+    <div class="about-right-overlay"></div>
+    <div class="about-right-badge">
+      <div class="badge-num">2004</div>
+      <div class="badge-lbl">Est. Chesterfield, MO</div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries-section">
+  <div style="font-size:0.68rem;font-weight:700;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Sectors</div>
+  <h2>Industries we serve</h2>
+  <p class="sub">Our Oracle expertise translates across industries — the underlying challenges are consistent regardless of sector.</p>
+  <div class="industry-grid">
+    <div class="industry-item"><span class="ind-icon">🛡️</span><div class="ind-name">Defense</div></div>
+    <div class="industry-item"><span class="ind-icon">🏥</span><div class="ind-name">Healthcare</div></div>
+    <div class="industry-item"><span class="ind-icon">🏭</span><div class="ind-name">Manufacturing</div></div>
+    <div class="industry-item"><span class="ind-icon">💻</span><div class="ind-name">Technology</div></div>
+    <div class="industry-item"><span class="ind-icon">🏛️</span><div class="ind-name">Federal Gov</div></div>
+    <div class="industry-item"><span class="ind-icon">📡</span><div class="ind-name">Telecom</div></div>
+    <div class="industry-item"><span class="ind-icon">✈️</span><div class="ind-name">Transportation</div></div>
+    <div class="industry-item"><span class="ind-icon">⚡</span><div class="ind-name">Utilities</div></div>
+    <div class="industry-item"><span class="ind-icon">🎓</span><div class="ind-name">Education</div></div>
+    <div class="industry-item"><span class="ind-icon">💰</span><div class="ind-name">Finance</div></div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="news-section" id="news">
+  <div class="tag">Latest</div>
+  <h2>News & Recognition</h2>
+  <div class="news-strip">
+    <div class="news-featured">
+      <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=700&auto=format&fit=crop" alt="Inc 500">
+      <div class="news-featured-body">
+        <div class="nf-tag">🏆 Award — Inc. Magazine</div>
+        <h3>NVision IT Makes the Inc. 500 — Ranked #451 in America, 7th in Missouri</h3>
+        <p>An exclusive ranking of the nation's fastest-growing private companies. The Inc. 5000 represents what can be achieved when you are passionate about your cause.</p>
+        <a href="http://www.inc.com/profile/nvision-it" target="_blank">Read on Inc.com →</a>
+      </div>
+    </div>
+    <div class="news-side">
+      <a href="http://www.oracle.com/us/partnerships/index.htm" target="_blank" class="news-mini">
+        <div class="nm-tag">Partnership</div>
+        <h4>NVision IT Achieves Oracle Gold Partner Status</h4>
+        <span class="nm-arrow">Read article →</span>
+      </a>
+      <a href="http://www.prnewswire.com/news-releases/nvision-it-collaborates-with-canon-information-and-imaging-solutions-inc-to-accelerate-the-rollout-of-solutions-based-on-the-enterprise-imaging-platform-by-canon-300245464.html" target="_blank" class="news-mini">
+        <div class="nm-tag">Partnership</div>
+        <h4>NVision IT Partners with Canon for Enterprise Document Imaging</h4>
+        <span class="nm-arrow">Read article →</span>
+      </a>
+      <a href="http://magazine.cioreview.com/magazines/November2016/Oracle/#page=46" target="_blank" class="news-mini">
+        <div class="nm-tag">Recognition</div>
+        <h4>Named Among 100 Most Promising Oracle Solution Providers — CIO Review</h4>
+        <span class="nm-arrow">Read article →</span>
+      </a>
+    </div>
+    <div class="news-side">
+      <a href="public-sector.html" class="news-mini">
+        <div class="nm-tag">Government</div>
+        <h4>NVision IT Awarded GSA STARS III Contract (47QTCB22D0369)</h4>
+        <span class="nm-arrow">View details →</span>
+      </a>
+      <a href="about.html" class="news-mini">
+        <div class="nm-tag">Certification</div>
+        <h4>SBA 8(a) Small Disadvantaged Business Certification Achieved</h4>
+        <span class="nm-arrow">Learn more →</span>
+      </a>
+      <a href="http://finance.yahoo.com/news/nvision-made-inc-magazines-35th-123000823.html" target="_blank" class="news-mini">
+        <div class="nm-tag">Award</div>
+        <h4>Inc. Magazine's 35th Annual List of America's Fastest-Growing Companies</h4>
+        <span class="nm-arrow">Read article →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section class="certs-section">
+  <div class="certs-inner">
+    <div class="cert-item">
+      <span class="cert-icon">🏅</span>
+      <div><div class="cert-name">Oracle Gold Partner</div><div class="cert-sub">Certified</div></div>
+    </div>
+    <div class="certs-divider"></div>
+    <div class="cert-item">
+      <span class="cert-icon">📋</span>
+      <div><div class="cert-name">ISO 9001:2015</div><div class="cert-sub">Quality Management</div></div>
+    </div>
+    <div class="certs-divider"></div>
+    <div class="cert-item">
+      <span class="cert-icon">🏛️</span>
+      <div><div class="cert-name">SBA 8(a)</div><div class="cert-sub">Small Disadvantaged Business</div></div>
+    </div>
+    <div class="certs-divider"></div>
+    <div class="cert-item">
+      <span class="cert-icon">🌐</span>
+      <div><div class="cert-name">MBE / DOT DBE</div><div class="cert-sub">Minority Business Enterprise</div></div>
+    </div>
+    <div class="certs-divider"></div>
+    <div class="cert-item">
+      <span class="cert-icon">📈</span>
+      <div><div class="cert-name">Inc. 500 — #451</div><div class="cert-sub">America's Fastest Growing</div></div>
+    </div>
+    <div class="certs-divider"></div>
+    <div class="cert-item">
+      <span class="cert-icon">⭐</span>
+      <div><div class="cert-name">CIO Review Top 100</div><div class="cert-sub">Oracle Solution Provider</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testi-section">
+  <div class="testi-inner">
+    <div class="tag">What clients say</div>
+    <div class="testi-quote">"NVision IT delivered our Oracle R12 upgrade <span>on time and within budget</span>. Their team understood both the technical and business sides — rare for an IT firm."</div>
+    <div class="testi-dots">
+      <div class="testi-dot active"></div>
+      <div class="testi-dot"></div>
+      <div class="testi-dot"></div>
+    </div>
+    <div class="testi-author">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&auto=format&fit=crop&crop=face" class="testi-avatar" alt="Client">
+      <div>
+        <div class="testi-name">James M.</div>
+        <div class="testi-role">CFO, Fortune 500 Manufacturing Company</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div>
+      <h2>Ready to talk about <span>your project?</span></h2>
+      <p>Whether you need a full ERP implementation, a single vetted consultant, or help navigating a government contract vehicle — we respond personally within one business day.</p>
+      <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;">
+        <a href="contact.html" class="btn-gold">Contact Us</a>
+        <a href="public-sector.html" class="btn-ghost">Government Contracts →</a>
+      </div>
+      <div style="margin-top:1.5rem;font-size:0.8rem;color:rgba(255,255,255,0.35);">info@nvisioninfotech.com · 314-249-0824 · 743 Spirit 40 Park Dr, Suite 204, Chesterfield MO</div>
+    </div>
+    <div style="position:relative;z-index:1;">
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&auto=format&fit=crop" style="width:380px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);display:block;" alt="Meeting">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="font-weight:800;font-size:1.2rem;color:var(--white);">NVision IT</div>
+      <p>Enterprise IT solutions for Fortune 500 companies and federal agencies. Oracle Gold Partner. Inc. 500. Founded 2004, Chesterfield, MO.</p>
+      <div style="margin-top:1rem;font-size:0.78rem;color:rgba(255,255,255,0.35);">314-249-0824<br>info@nvisioninfotech.com</div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="services.html#erp">ERP Implementation</a>
+      <a href="services.html#bi">Business Intelligence</a>
+      <a href="services.html#cloud">Enterprise Cloud</a>
+      <a href="services.html#dev">Custom Development</a>
+      <a href="services.html#db">Database Support</a>
+      <a href="services.html#staff">Staff Augmentation</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="news.html">News & Recognition</a>
+      <a href="public-sector.html">Public Sector</a>
+      <a href="careers.html">Careers</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Government</h4>
+      <a href="public-sector.html">GSA MAS: GS-35F-414DA</a>
+      <a href="public-sector.html">STARS III: 47QTCB22D0369</a>
+      <a href="public-sector.html">CAGE: 6LV78</a>
+      <a href="public-sector.html">UEI: GHLQKJHCAGC1</a>
+      <a href="public-sector.html">SBA 8(a) Certified</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-logo">NVision IT</div>
+    <div class="footer-copy">© 2026 NVision IT, LLC. All rights reserved.</div>
+  </div>
+</footer>
+
+</body></html>
