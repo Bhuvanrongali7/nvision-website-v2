@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News — NVision IT</title>
+<link rel="stylesheet" href="base_styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --navy:#0A1628; --navy-mid:#112240; --accent:#FBBF24; --accent-dim:rgba(251,191,36,0.12); --accent-glow:rgba(251,191,36,0.25); --bg:#F8FAFC; --bg-mid:#EEF2F7; --white:#FFFFFF; --text-main:#0A1628; --text-muted:#4A5568; --border:rgba(10,22,40,0.1); --card-bg:#FFFFFF; }
+html{scroll-behavior:smooth;}
+body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text-main);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4rem;background:rgba(10,22,40,0.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav-logo{font-weight:800;font-size:1.2rem;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:10px;}
+.nav-logo img{height:34px;width:auto;object-fit:contain;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;padding:0.4rem 0.9rem;border-radius:6px;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.nav-cta{background:var(--accent);color:var(--navy);padding:0.55rem 1.4rem;border-radius:6px;font-weight:700;font-size:0.85rem;text-decoration:none;}
+.tag{font-size:0.68rem;font-weight:700;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.75rem;display:block;}
+.btn-gold{background:var(--accent);color:var(--navy);padding:0.75rem 1.75rem;border-radius:8px;font-weight:700;font-size:0.88rem;text-decoration:none;display:inline-block;transition:opacity 0.2s;}
+.btn-gold:hover{opacity:0.85;}
+.btn-outline{background:transparent;color:var(--navy);padding:0.75rem 1.75rem;border-radius:8px;font-weight:700;font-size:0.88rem;text-decoration:none;border:2px solid var(--border);display:inline-block;transition:all 0.2s;}
+.btn-outline:hover{border-color:var(--accent);}
+.btn-navy{background:var(--navy);color:var(--white);padding:0.85rem 2rem;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;display:inline-block;transition:all 0.2s;}
+.btn-navy:hover{background:var(--accent);color:var(--navy);}
+.btn-ghost-dark{background:transparent;color:rgba(255,255,255,0.7);padding:0.75rem 1.75rem;border-radius:8px;font-weight:600;font-size:0.88rem;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);display:inline-block;transition:all 0.2s;}
+.btn-ghost-dark:hover{border-color:rgba(255,255,255,0.5);color:var(--white);}
+.page-hero{padding:9rem 4rem 5rem;background:var(--navy);position:relative;overflow:hidden;}
+.page-hero::after{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(251,191,36,0.08),transparent 70%);}
+.page-hero-z{position:relative;z-index:1;}
+.page-hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;color:var(--white);line-height:1.1;letter-spacing:-0.02em;margin-bottom:1rem;}
+.page-hero p{color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.8;max-width:580px;}
+.cta-bar{background:var(--accent);padding:4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+.cta-bar h2{font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;color:var(--navy);max-width:500px;line-height:1.2;}
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.06);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-weight:800;font-size:1.1rem;color:var(--white);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:0.78rem;color:rgba(255,255,255,0.5);text-decoration:none;}
+.footer-links a:hover{color:var(--accent);}
+.footer-copy{font-size:0.75rem;color:rgba(255,255,255,0.3);}
+@media(max-width:900px){nav{padding:1rem 1.5rem;}.nav-links{display:none;}.page-hero{padding:7rem 1.5rem 3rem;}.cta-bar{padding:2.5rem 1.5rem;}footer{padding:2rem 1.5rem;flex-direction:column;}}
+.news-hero-split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+.news-masonry{columns:3;gap:1.5rem;padding:5rem 4rem;}
+.news-brick{break-inside:avoid;background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:1.5rem;transition:box-shadow 0.2s,transform 0.2s;}
+.news-brick:hover{box-shadow:0 8px 30px rgba(10,22,40,0.1);transform:translateY(-3px);}
+.news-brick img{width:100%;height:180px;object-fit:cover;}
+.news-brick-body{padding:1.5rem;}
+.news-brick-tag{font-size:0.65rem;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem;}
+.news-brick h3{font-size:0.95rem;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:0.5rem;}
+.news-brick p{font-size:0.82rem;color:var(--text-muted);line-height:1.65;}
+.news-brick a{display:inline-flex;align-items:center;gap:5px;color:var(--accent);font-size:0.8rem;font-weight:700;margin-top:1rem;text-decoration:none;}
+.timeline-section{padding:5rem 4rem;background:var(--navy);}
+.timeline-section h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--white);margin-bottom:2.5rem;}
+.tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+.tl-list{display:flex;flex-direction:column;gap:0;position:relative;padding-left:2rem;}
+.tl-list::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent),rgba(251,191,36,0.2));}
+.tl-item{position:relative;padding:0 0 2rem 1.5rem;}
+.tl-dot{position:absolute;left:-2rem;top:4px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--navy);box-shadow:0 0 0 2px var(--accent);transform:translateX(-6px);}
+.tl-year{font-size:0.68rem;font-weight:800;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px;}
+.tl-title{font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:4px;}
+.tl-desc{font-size:0.82rem;color:rgba(255,255,255,0.55);line-height:1.6;}
+.awards-section{padding:5rem 4rem;background:var(--bg-mid);}
+.awards-section h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--navy);margin-bottom:2.5rem;}
+.awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.award-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;transition:all 0.2s;}
+.award-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 30px rgba(251,191,36,0.1);}
+.award-icon{font-size:3rem;margin-bottom:1rem;display:block;}
+.award-name{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.award-org{font-size:0.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;}
+.award-desc{font-size:0.8rem;color:var(--text-muted);line-height:1.55;}
+@media(max-width:900px){.news-hero-split{grid-template-columns:1fr;}.news-masonry{columns:1;padding:3rem 1.5rem;}.tl-grid{grid-template-columns:1fr;}.awards-grid{grid-template-columns:1fr;}.timeline-section,.awards-section{padding:3rem 1.5rem;}}
+</style></head><body>
+<nav>
+  <a class="nav-logo" href="index.html"><img src="https://www.nvisioninfotech.com/images/logo.png" alt="NVision IT" onerror="this.style.display='none'"> NVision IT</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li><li><a href="resources.html">Resources</a></li>
+    <li><a href="news.html">News</a></li><li><a href="public-sector.html">Public Sector</a></li>
+    <li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get in Touch</a>
+</nav>
+<div class="page-hero">
+  <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&auto=format&fit=crop') center/cover no-repeat;opacity:0.1;"></div>
+  <div class="page-hero-z">
+    <div class="news-hero-split">
+      <div><span class="tag">News & Recognition</span><h1>20 years of milestones & recognition</h1><p>From Inc. 500 rankings to Oracle Gold Partner status — a look at the achievements and partnerships that define NVision IT's track record.</p></div>
+      <div style="background:var(--accent);border-radius:20px;padding:2.5rem;"><div style="font-size:4rem;font-weight:800;color:var(--navy);line-height:1;">#451</div><div style="font-size:1rem;font-weight:700;color:var(--navy);opacity:0.75;margin-top:0.5rem;">Inc. 500 in America</div><div style="font-size:0.82rem;color:var(--navy);opacity:0.55;margin-top:0.4rem;">7th fastest growing in Missouri</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="news-masonry">
+  <div class="news-brick"><img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&auto=format&fit=crop" alt="Inc 500"><div class="news-brick-body"><div class="news-brick-tag">🏆 Award</div><h3>NVision IT Makes the Inc. 500 — Ranked #451 in America, 7th in Missouri</h3><p>An exclusive ranking of the nation's fastest-growing private companies. NVision IT earned this recognition through consistent, exceptional enterprise IT delivery.</p><a href="http://www.inc.com/profile/nvision-it" target="_blank">Read on Inc.com →</a></div></div>
+  <div class="news-brick"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop" alt="Oracle"><div class="news-brick-body"><div class="news-brick-tag">Partnership</div><h3>NVision IT Achieves Oracle Gold Partner Status</h3><p>Oracle recognized NVision IT for its commitment to delivering Oracle solutions — covering Oracle Database 12c and Oracle E-Business Suite.</p><a href="http://www.oracle.com/us/partnerships/index.htm" target="_blank">Read article →</a></div></div>
+  <div class="news-brick"><div class="news-brick-body"><div class="news-brick-tag">Government</div><h3>NVision IT Awarded GSA STARS III Contract (47QTCB22D0369)</h3><p>A 0 billion GWAC set aside for SBA-certified 8(a) small businesses — expanding federal agency access to NVision IT's full service portfolio.</p><a href="public-sector.html">View contract details →</a></div></div>
+  <div class="news-brick"><img src="https://images.unsplash.com/photo-1568234928966-359c35dd8327?w=600&auto=format&fit=crop" alt="Canon"><div class="news-brick-body"><div class="news-brick-tag">Partnership</div><h3>NVision IT Partners with Canon for Enterprise Document Imaging</h3><p>NVision IT joined Canon CIIS to deliver the Enterprise Imaging Platform — automating document-intensive Oracle and PeopleSoft workflows.</p><a href="http://www.prnewswire.com/news-releases/nvision-it-collaborates-with-canon-information-and-imaging-solutions-inc-to-accelerate-the-rollout-of-solutions-based-on-the-enterprise-imaging-platform-by-canon-300245464.html" target="_blank">Read press release →</a></div></div>
+  <div class="news-brick"><img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop" alt="CIO Review"><div class="news-brick-body"><div class="news-brick-tag">Recognition</div><h3>Named Among 100 Most Promising Oracle Solution Providers — CIO Review 2016</h3><p>CIO Review magazine spotlighted NVision IT's innovation and impact across the Oracle ecosystem.</p><a href="http://magazine.cioreview.com/magazines/November2016/Oracle/#page=46" target="_blank">Read in CIO Review →</a></div></div>
+  <div class="news-brick"><div class="news-brick-body"><div class="news-brick-tag">Certification</div><h3>SBA 8(a) Small Disadvantaged Business Certification</h3><p>NVision IT achieved SBA 8(a) certification alongside existing ISO 9001:2015 and MBE certifications — completing a full government credentials portfolio.</p><a href="about.html">Learn more →</a></div></div>
+  <div class="news-brick"><img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&auto=format&fit=crop" alt="Inc 5000"><div class="news-brick-body"><div class="news-brick-tag">Award</div><h3>Inc. Magazine's 35th Annual List of America's Fastest-Growing Companies</h3><p>NVision IT earned a place on the Inc. 5000 — demonstrating consistent and exceptional growth in the enterprise technology sector.</p><a href="http://finance.yahoo.com/news/nvision-made-inc-magazines-35th-123000823.html" target="_blank">Read article →</a></div></div>
+</div>
+
+<section class="timeline-section">
+  <span class="tag">Our journey</span>
+  <h2>NVision IT Through the Years</h2>
+  <div class="tl-grid">
+    <div class="tl-list">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2004</div><div class="tl-title">NVision IT Founded</div><div class="tl-desc">Founded in Chesterfield, MO with a mission to transform enterprise IT challenges into competitive advantages.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2008</div><div class="tl-title">First Fortune 500 Engagement</div><div class="tl-desc">Completed first full Oracle E-Business Suite implementation for a Fortune 500 manufacturing client.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2012</div><div class="tl-title">Oracle Gold Partner Status</div><div class="tl-desc">Oracle formally recognized NVision IT as a Gold Partner for E-Business Suite, Database, and Cloud expertise.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2014</div><div class="tl-title">ISO 9001 Certification</div><div class="tl-desc">Achieved ISO 9001 QMS certification — formalizing delivery standards practiced since founding.</div></div>
+    </div>
+    <div class="tl-list">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2015</div><div class="tl-title">Inc. 500 — #451 in America</div><div class="tl-desc">Ranked #451 nationally and 7th in Missouri among America's fastest-growing private companies.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2016</div><div class="tl-title">Canon Partnership & CIO Review</div><div class="tl-desc">Partnered with Canon CIIS and named one of CIO Review's 100 Most Promising Oracle Solution Providers.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2020</div><div class="tl-title">DoD Contracts Expand</div><div class="tl-desc">Deepened footprint in the defense sector, supporting major DoD program initiatives alongside prime contractors.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2022</div><div class="tl-title">GSA STARS III Award</div><div class="tl-desc">Awarded a place on GSA's 0B 8(a) STARS III GWAC, expanding federal agency access to NVision IT services.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="awards-section">
+  <span class="tag">Recognition</span>
+  <h2>Awards & Certifications</h2>
+  <div class="awards-grid">
+    <div class="award-card"><span class="award-icon">🏆</span><div class="award-name">Inc. 500 — #451</div><div class="award-org">Inc. Magazine</div><div class="award-desc">Ranked among America's fastest-growing private companies. 7th in Missouri.</div></div>
+    <div class="award-card"><span class="award-icon">🥇</span><div class="award-name">Oracle Gold Partner</div><div class="award-org">Oracle Corporation</div><div class="award-desc">Deep expertise across Oracle Cloud, E-Business Suite, and Oracle Database.</div></div>
+    <div class="award-card"><span class="award-icon">📋</span><div class="award-name">ISO 9001:2015</div><div class="award-org">Certified QMS</div><div class="award-desc">International quality management certification for delivery consistency.</div></div>
+    <div class="award-card"><span class="award-icon">🏛️</span><div class="award-name">SBA 8(a)</div><div class="award-org">Small Business Administration</div><div class="award-desc">Federal set-aside certification for small disadvantaged businesses.</div></div>
+    <div class="award-card"><span class="award-icon">🌐</span><div class="award-name">MBE / DOT DBE</div><div class="award-org">Certified</div><div class="award-desc">Minority Business Enterprise and DOT Disadvantaged Business Enterprise.</div></div>
+    <div class="award-card"><span class="award-icon">⭐</span><div class="award-name">CIO Review Top 100</div><div class="award-org">CIO Review Magazine</div><div class="award-desc">100 Most Promising Oracle Solution Providers — 2016.</div></div>
+  </div>
+</section>
+
+<div class="cta-bar"><h2>Ready to be our next success story?</h2><a href="contact.html" class="btn-navy">Start a Conversation →</a></div>
+<footer><div class="footer-logo">NVision IT</div><div class="footer-links"><a href="about.html">About</a><a href="services.html">Services</a><a href="public-sector.html">Public Sector</a><a href="contact.html">Contact</a></div><div class="footer-copy">© 2026 NVision IT, LLC. All rights reserved.</div></footer>
+</body></html>
